@@ -1,0 +1,10 @@
+venv
+.venv
+*.ini
+tmp
+node_modules
+.vscode
+package-lock.json
+package.json
+__pycache__
+*.pyc
