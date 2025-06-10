@@ -155,9 +155,10 @@ def calculate_number_of_pins(border_length, scale_factor):
 
 
 def calculate_normal_vector(border, point, geom_a):
+    distance_on_border = border.project(point)
     delta = 0.01 * border.length
-    p1 = border.interpolate(max(0, point.distance(border) - delta))
-    p2 = border.interpolate(min(border.length, point.distance(border) + delta))
+    p1 = border.interpolate(max(0, distance_on_border - delta))
+    p2 = border.interpolate(min(border.length, distance_on_border + delta))
 
     dx = p2.x - p1.x
     dy = p2.y - p1.y
