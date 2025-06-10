@@ -8,3 +8,5 @@ package-lock.json
 package.json
 __pycache__
 *.pyc
+.coverage
+.pytest_cache
