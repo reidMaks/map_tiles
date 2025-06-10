@@ -1,0 +1,6 @@
+shapely
+pyproj
+ezdxf
+numpy
+numpy-stl
+Unidecode
