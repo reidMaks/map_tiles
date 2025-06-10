@@ -4,3 +4,5 @@ ezdxf
 numpy
 numpy-stl
 Unidecode
+pytest
+pytest-cov
