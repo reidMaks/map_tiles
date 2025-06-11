@@ -9,7 +9,10 @@ TARGET_SIZE_MM = 250
 OFFSET_MM = 0.1
 
 # Виключення регіонів
-EXCLUDE_REGIONS = ['Kyiv', "Sevastopol'"]
+EXCLUDE_REGIONS = [
+    "Kyiv",
+    "Sevastopol'",
+]
 
 # Проєкції
 WGS84_EPSG = "EPSG:4326"
