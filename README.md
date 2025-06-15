@@ -7,20 +7,17 @@ serve as historical reference.
 
 ## Quick start
 
-1. Install Python dependencies:
+1. Build the Docker image:
 
 ```bash
-pip install -r requirements.txt
+docker build -t topojson-tool .
 ```
 
-2. Prepare a simplified GeoJSON file. A helper script `run_topojson.sh` can run inside a
-docker container to build one from `source_data/gadm41_UKR_1.json` and output a smoothed
-file. After running it you will have a file like `source_data/simplified_gadm41_UKR_1_P-0.7.json`.
-
-3. Generate DXF maps:
+2. Run the helper script `run_topojson.sh`. It will create a simplified GeoJSON file and
+   generate the DXF maps in one go:
 
 ```bash
-python3 -m map_generator.generate path/to/simplified.geojson
+./run_topojson.sh
 ```
 
 DXF files will be placed in `tmp/` by default:
@@ -29,6 +26,14 @@ DXF files will be placed in `tmp/` by default:
 - `ukraine_pins.dxf` – pins
 - `ukraine_holes.dxf` – holes
 - `ukraine_full.dxf` – all features together
+
+If you prefer running the generator without Docker, install the Python
+requirements and call the script manually:
+
+```bash
+pip install -r requirements.txt
+python3 -m map_generator.generate path/to/simplified.geojson
+```
 
 ## Project structure
 
