@@ -27,6 +27,12 @@ DXF files will be placed in `tmp/` by default:
 - `ukraine_holes.dxf` – holes
 - `ukraine_full.dxf` – all features together
 
+## Previewing DXF files
+
+A simple web viewer is available at `viewer/index.html`. Open this file in your
+browser (for example using the VS Code Live Preview extension) and choose one of
+the generated DXF files from the `tmp/` directory to inspect it.
+
 If you prefer running the generator without Docker, install the Python
 requirements and call the script manually:
 

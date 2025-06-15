@@ -1,6 +1,6 @@
 {
     "name": "map_tiles",
-    "image": "mcr.microsoft.com/devcontainers/typescript-node:0-20",
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:0-22",
     "features": {
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.11"
