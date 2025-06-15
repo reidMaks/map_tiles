@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DXF Viewer</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; }
+    #viewer { width: 100%; height: calc(100vh - 40px); }
+    #fileInput { margin: 10px; }
+  </style>
+</head>
+<body>
+  <input type="file" id="fileInput" accept=".dxf" />
+  <div id="viewer"></div>
+
+  <script src="https://unpkg.com/three@0.154.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/dxf-parser@1.1.2/dist/dxf-parser.js"></script>
+  <script src="https://unpkg.com/three-dxf@1.3.1/dist/three-dxf.js"></script>
+  <script>
+    const input = document.getElementById('fileInput');
+    const container = document.getElementById('viewer');
+    let canvas;
+
+    function loadFont(callback) {
+      const loader = new THREE.FontLoader();
+      loader.load('https://unpkg.com/three@0.154.0/examples/fonts/helvetiker_regular.typeface.json', callback);
+    }
+
+    input.addEventListener('change', () => {
+      const file = input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const parser = new window.DxfParser();
+        let dxf;
+        try {
+          dxf = parser.parseSync(reader.result);
+        } catch (err) {
+          alert('Error parsing DXF: ' + err.message);
+          return;
+        }
+        container.innerHTML = '';
+        loadFont((font) => {
+          canvas = new window.ThreeDxf.Viewer(dxf, container, container.clientWidth, container.clientHeight, font);
+        });
+      };
+      reader.readAsText(file);
+    });
+
+    window.addEventListener('resize', () => {
+      if (canvas && typeof canvas.resize === 'function') {
+        canvas.resize(container.clientWidth, container.clientHeight);
+      }
+    });
+  </script>
+</body>
+</html>
