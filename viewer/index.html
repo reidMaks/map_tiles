@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DXF Viewer</title>
+    <style>
+        html, body, #viewer-container { height: 100%; margin: 0; }
+        #viewer-container { width: 100%; }
+        #file-input { position: absolute; top: 10px; left: 10px; z-index: 10; }
+    </style>
+</head>
+<body>
+<input type="file" id="file-input" accept=".dxf" />
+<div id="viewer-container"></div>
+<script type="module">
+import {DxfViewer} from 'https://unpkg.com/dxf-viewer@1.0.42/src/DxfViewer.js';
+
+const container = document.getElementById('viewer-container');
+const viewer = new DxfViewer(container, { autoResize: true, antialias: true });
+
+const input = document.getElementById('file-input');
+input.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    await viewer.Load({ url, fonts: ['https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxP.ttf'] });
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
